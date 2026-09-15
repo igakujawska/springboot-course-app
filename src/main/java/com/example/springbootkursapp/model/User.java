@@ -5,12 +5,10 @@ package com.example.springbootkursapp.model;
 //konwencja, że w folderze model nie uzywamy koncowki model w nazwie
 //JPA - specyfikacja, okresla jak nazywaja sie adnotacje, natomiast hibernate je implementuje do bazy
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity //entity to byt/jednostka z własna tozsamoscia zmieniajaca w tabele
+@Table(name = "users")
 public class User {
     @Id //identyfikator
     @GeneratedValue(strategy = GenerationType.IDENTITY)

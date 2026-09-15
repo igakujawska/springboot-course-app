@@ -1,6 +1,8 @@
 package com.example.springbootkursapp.controller;
 
 import com.example.springbootkursapp.model.User;
+import com.example.springbootkursapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,15 +11,18 @@ import java.util.List;
 
 @RestController //kontrolery do odbierania żądań,, ustawienie adnotacji
 public class UserController {
+
+    private final UserRepository userRepository;
+
+    @Autowired //trzeba dopisac jak jest wiecej konstruktorów niz jeden
+    public UserController(UserRepository userRepository)
+    {
+        this.userRepository = userRepository;
+    }
+
     @GetMapping("/users") //przypisanie, zmapowanie prostego endpointu do kontrolera
     public List<User> getUsers()
     {
-        List<User> users = new ArrayList<>();
-
-        users.add(new User(1,"admin","admin","<EMAIL>"));
-        users.add(new User(2,"user","user","<EMAIL>"));
-        users.add(new User(3, "user2", "user2", "<EMAIL>"));
-
-        return users;
+        return userRepository.findAll(); //mozemy uzyc funkcji, bo mamy juz repo
     }
 }
