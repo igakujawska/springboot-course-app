@@ -2,6 +2,7 @@ package com.example.springbootkursapp.model;
 
 //MVC to model view controller, czyli mamy dane, które kontroluje controller, i to piszemy w widoku Angularze/Vue/React
 //konwencja, że w folderze model nie uzywamy koncowki model w nazwie
+//JPA - specyfikacja, okresla jak nazywaja sie adnotacje, natomiast hibernate je implementuje do bazy
 public class User {
     private int id;
     private String username;
