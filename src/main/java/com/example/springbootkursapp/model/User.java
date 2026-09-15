@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
     @Id //identyfikator
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //autoikrementacja, czyli ciagle ++1
     private int id;
     private String username;
     private String password;
