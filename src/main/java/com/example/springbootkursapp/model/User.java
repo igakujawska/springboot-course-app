@@ -1,5 +1,6 @@
 package com.example.springbootkursapp.model;
 
+//model tylko opisuje dane, a repo to menadzer z dostepem do zarzadzania tymi danymi
 //MVC to model view controller, czyli mamy dane, które kontroluje controller, i to piszemy w widoku Angularze/Vue/React
 //konwencja, że w folderze model nie uzywamy koncowki model w nazwie
 //JPA - specyfikacja, okresla jak nazywaja sie adnotacje, natomiast hibernate je implementuje do bazy
