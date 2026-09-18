@@ -2,6 +2,7 @@ package com.example.springbootkursapp.controller;
 
 import com.example.springbootkursapp.model.User;
 import com.example.springbootkursapp.repository.UserRepository;
+import com.example.springbootkursapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,23 +13,23 @@ import java.util.List;
 @RequestMapping("/api") //dodanie czegos przed endpointem
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired //trzeba dopisac jak jest wiecej konstruktorów niz jeden
-    public UserController(UserRepository userRepository)
+    public UserController(UserService userService)
     {
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/users") //przypisanie, zmapowanie prostego endpointu do kontrolera
     public List<User> getUsers()
     {
-        return userRepository.findAll(); //mozemy uzyc funkcji, bo mamy juz repo
+        return userService.getUsers(); //mozemy uzyc funkcji, bo mamy juz repo
     }
 
     @PostMapping("/users")
     public User addUser(@RequestBody User user)
     {
-        return userRepository.save(user);
+        return userService.addUser(user);
     }
 }
