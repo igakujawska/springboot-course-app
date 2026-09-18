@@ -6,16 +6,23 @@ package com.example.springbootkursapp.model;
 //JPA - specyfikacja, okresla jak nazywaja sie adnotacje, natomiast hibernate je implementuje do bazy
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity //entity to byt/jednostka z własna tozsamoscia zmieniajaca w tabele
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
     @Id //identyfikator
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoikrementacja, czyli ciagle ++1
     private int id;
     private String username;
     private String password;
     private String email;
+    private Role role;
 
 //aby przejsc do sql mamy HIBERNATE, a do tego potrzebne constructory, gettery i settery
     public User() {
@@ -44,6 +51,12 @@ public class User {
         this.id = id;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
+        //rola czy tam pozwolenie
+    }
+
     public String getPassword() {
         return password;
     }
@@ -60,3 +73,8 @@ public class User {
         this.email = email;
     }
 }
+
+    enum Role {
+    USER,
+    ADMIN
+    }
