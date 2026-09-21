@@ -21,13 +21,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users") //przypisanie, zmapowanie prostego endpointu do kontrolera
+    @GetMapping //przypisanie, zmapowanie prostego endpointu do kontrolera
     public List<User> getUsers()
     {
         return userService.getUsers(); //mozemy uzyc funkcji, bo mamy juz repo
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public User addUser(@RequestBody User user)
     {
         return userService.addUser(user);
