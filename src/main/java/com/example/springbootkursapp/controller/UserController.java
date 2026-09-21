@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController //kontrolery do odbierania żądań,, ustawienie adnotacji
-@RequestMapping("/api") //dodanie czegos przed endpointem
+@RestController //kontrolery do odbierania żądań, ustawienie adnotacji
+@RequestMapping("/api") //dodanie czegoś przed endpointem
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired //trzeba dopisac jak jest wiecej konstruktorów niz jeden
+    @Autowired //trzeba dopisac jak jest więcej konstruktorów niż jeden
     public UserController(UserService userService)
     {
         this.userService = userService;
