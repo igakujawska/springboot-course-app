@@ -37,6 +37,13 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    public User(String email, String username, String password, Role role) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -76,7 +83,3 @@ public class User implements UserDetails {
     }
 }
 
-    enum Role {
-    USER,
-    ADMIN
-    }
