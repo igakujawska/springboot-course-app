@@ -21,10 +21,11 @@ public class SecurityConfig
     @Bean //aby automatycznie wleciało do security frameworka
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/users/**").authenticated()
-                                .anyRequest().permitAll()
-                        ).formLogin(); //formlogin daje domyslna strone logowania
-    }
+                authorizeRequests
+                        .requestMatchers("/users/**").authenticated()
+                        .anyRequest().permitAll()
+        ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll()); //formlogin daje domyslna strone logowania, permitAll pozwala wszytskim to widziec
+
         return http.build();
+    }
 }
