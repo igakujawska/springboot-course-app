@@ -22,9 +22,9 @@ public class SecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/users/**").authenticated())
-                .anyRequest().permitAll()
-        ).formLogin();
+                                .requestMatchers("/users/**").authenticated()
+                                .anyRequest().permitAll()
+                        ).formLogin(); //formlogin daje domyslna strone logowania
     }
         return http.build();
 }
