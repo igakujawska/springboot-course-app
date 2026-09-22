@@ -22,7 +22,7 @@ public class SecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                        .requestMatchers("/users/**").authenticated()
+                        .requestMatchers("/users/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
         ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll()); //formlogin daje domyslna strone logowania, permitAll pozwala wszytskim to widziec
 
