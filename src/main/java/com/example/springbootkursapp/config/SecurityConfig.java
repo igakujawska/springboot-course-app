@@ -1,5 +1,4 @@
-package com.example.springbootkursapp.config;
-
+package com.gem.menadzerzadan.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,21 +9,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity //podstawa pod security filter chain
+@EnableWebSecurity
 public class SecurityConfig
 {
-    @Bean //adnotacja, która oznacza „stwórz ten obiekt i zarządzaj nim w Springu jako singletonem”
+    @Bean
     public PasswordEncoder passwordEncoder()
-        {
-            return new BCryptPasswordEncoder();
-        }
-    @Bean //aby automatycznie wleciało do security frameworka
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorizeRequests ->
-                authorizeRequests
+    {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
+    {
+        http.authorizeHttpRequests(authorizeHttpRequests ->
+                authorizeHttpRequests
                         .requestMatchers("/users/**").hasRole("ADMIN")
+                        .requestMatchers("/tasks/**").hasAnyRole("ADMIN", "USER")
                         .anyRequest().permitAll()
-        ).formLogin(formLogin -> formLogin.loginPage("/login").permitAll()); //formlogin daje domyslna strone logowania, permitAll pozwala wszytskim to widziec
+        ).formLogin(formLogin ->
+                formLogin.loginPage("/login")
+                .defaultSuccessUrl("/tasks").permitAll());
 
         return http.build();
     }
