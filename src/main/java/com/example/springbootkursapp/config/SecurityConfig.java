@@ -1,4 +1,4 @@
-package com.gem.menadzerzadan.config;
+package com.example.springbootkursapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
