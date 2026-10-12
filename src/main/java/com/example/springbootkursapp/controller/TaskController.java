@@ -16,6 +16,7 @@ public class TaskController {
     {
         this.taskService = taskService;
     }
+//ten KONTROLER zwraca REST API w podtaci JSON
 
     @GetMapping
     public List<Task> getTasksForUser(@AuthenticationPrincipal User user)
