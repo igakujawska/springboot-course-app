@@ -9,4 +9,5 @@ import java.util.Optional;
 //chcemy zeby pobieralo, zapisywało dane bez skomplikowanych zapytan np. sql
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsername(String username);
+    //optional nie list przyzwracaniu wiekszej ilosci rekordow
 }
